@@ -1,7 +1,7 @@
 import { SweepGradient } from "../src/index.js";
 
 const demoElement = document.querySelector("#demo");
-const dpr = window.devicePixelRatio || 1;
+const dpr = Math.ceil(window.devicePixelRatio) || 1;
 demoElement.width = demoElement.getBoundingClientRect().width * dpr;
 demoElement.height = demoElement.getBoundingClientRect().height * dpr;
 
@@ -16,5 +16,3 @@ g.addColorStop(0.75, "rgba(255,255,0,0)");
 g.addColorStop(1.0, "#ffff00");
 
 g.draw();
-
-console.log(g.getStops());
