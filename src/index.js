@@ -15,7 +15,7 @@ export class SweepGradient {
     const stops = Object.values(this.offsets)
       .sort()
       .map(stop => {
-        return { stop: stop, color: this.colors[stop] };
+        return { stop: stop, color: tinycolor(this.colors[stop]) };
       });
     if (stops[0].stop > 0) {
       stops.unshift({ stop: 0, color: stops[0].color });
@@ -30,8 +30,7 @@ export class SweepGradient {
     let step = 0;
     for (let i = 0; i < stops.length - 1; i++) {
       let stopA = stops[i];
-      let nextStep = i + 1;
-      let stopB = stops[nextStep];
+      let stopB = stops[i + 1];
       if (proportion >= stopA.stop) {
         if (proportion <= stopB.stop) {
           step = i;
@@ -49,10 +48,7 @@ export class SweepGradient {
 
     const blend = propEnd / propRange;
 
-    const a = tinycolor(regionStart.color);
-    const b = tinycolor(regionEnd.color);
-
-    return tinycolor.mix(a, b, blend * 100).toRgbString();
+    return tinycolor.mix(regionStart.color, regionEnd.color, blend * 100).toRgbString();
   }
 
   draw() {
