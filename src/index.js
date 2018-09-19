@@ -58,14 +58,15 @@ export class SweepGradient {
 
   drawPerPixel() {
     const ctx = this.ctx;
-    const rect = ctx.canvas.getBoundingClientRect();
-    const centreX = rect.width / 2;
-    const centreY = rect.height / 2;
-    const step = 1;
+    const width = ctx.canvas.width;
+    const height = ctx.canvas.height;
+    const centreX = width / 2;
+    const centreY = height / 2;
+    const rectSize = 1;
     const stops = this.getStops();
-    for (let y = 0; y < rect.height; y += step) {
+    for (let y = 0; y < height; y += rectSize) {
       let dY = y - centreY;
-      for (let x = 0; x < rect.width; x += step) {
+      for (let x = 0; x < width; x += rectSize) {
         let dX = x - centreX;
         let angle = (Math.atan(dX / dY) * 180) / Math.PI;
         if (dX < 0) {
@@ -80,7 +81,7 @@ export class SweepGradient {
           }
         }
         ctx.fillStyle = this.colourForProportion(stops, angle / 360);
-        ctx.fillRect(x, y, step, step);
+        ctx.fillRect(x, y, rectSize, rectSize);
       }
     }
   }
@@ -91,9 +92,10 @@ export class SweepGradient {
     };
 
     const ctx = this.ctx;
-    const rect = ctx.canvas.getBoundingClientRect();
-    const x = rect.width / 2;
-    const y = rect.height / 2;
+    const width = ctx.canvas.width;
+    const height = ctx.canvas.height;
+    const x = width / 2;
+    const y = height / 2;
     const radius = Math.min(x, y);
     const circumference = 2 * Math.PI * radius;
     const degStep = Math.max(1, 360 / circumference);
