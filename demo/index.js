@@ -16,7 +16,11 @@ const offscreenCtx = offscreenElement.getContext("2d");
 /**
  * Setup and draw the gradient.
  */
-const g = new SweepGradient.SweepGradient(offscreenCtx);
+const x1 = 0;
+const y0 = 0;
+const x0 = width;
+const y1 = height;
+const g = new SweepGradient.SweepGradient(offscreenCtx, x0, y0, x1, y1);
 
 g.addColorStop(0.0, "#ffff00");
 g.addColorStop(0.25, "#ff00ff");

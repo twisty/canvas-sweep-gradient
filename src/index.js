@@ -1,8 +1,12 @@
 import tinycolor from "tinycolor2";
 
 export class SweepGradient {
-  constructor(ctx) {
+  constructor(ctx, x0, y0, x1, y1) {
     this.ctx = ctx;
+    this.x0 = Math.min(x0, x1);
+    this.y0 = Math.min(y0, y1);
+    this.x1 = Math.max(x0, x1);
+    this.y1 = Math.max(y0, y1);
     this.offsets = {};
     this.colors = {};
   }
@@ -62,15 +66,15 @@ export class SweepGradient {
 
   drawPerPixel() {
     const ctx = this.ctx;
-    const width = ctx.canvas.width;
-    const height = ctx.canvas.height;
-    const centreX = width / 2;
-    const centreY = height / 2;
+    const width = this.x1 - this.x0;
+    const height = this.y1 - this.y0;
+    const centreX = this.x0 + width / 2;
+    const centreY = this.y0 + height / 2;
     const rectSize = 1;
     const stops = this.getStops();
-    for (let y = 0; y < height; y += rectSize) {
+    for (let y = this.y0; y < this.y1; y += rectSize) {
       let dY = y - centreY;
-      for (let x = 0; x < width; x += rectSize) {
+      for (let x = this.x0; x < this.x1; x += rectSize) {
         let dX = x - centreX;
         let angle = (Math.atan(dX / dY) * 180) / Math.PI;
         if (dX < 0) {
@@ -96,10 +100,10 @@ export class SweepGradient {
     };
 
     const ctx = this.ctx;
-    const width = ctx.canvas.width;
-    const height = ctx.canvas.height;
-    const x = width / 2;
-    const y = height / 2;
+    const width = this.x1 - this.x0;
+    const height = this.y1 - this.y0;
+    const x = this.x0 + width / 2;
+    const y = this.y0 + height / 2;
     const radius = Math.min(x, y);
     const circumference = 2 * Math.PI * radius;
     const degStep = Math.max(1, 360 / circumference);
