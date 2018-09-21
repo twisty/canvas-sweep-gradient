@@ -1,5 +1,3 @@
-import { SweepGradient } from "../src/index.js";
-
 const displayElement = document.querySelector("#demo");
 const displayRect = displayElement.getBoundingClientRect();
 
@@ -10,7 +8,7 @@ const height = displayRect.height;
  * Setup an off screen canvas context for drawing our gradient.
  * Note: don't the scale the context when generating a graphic for use as a pattern fill.
  */
-const offscreenElement = document.createElement('canvas');
+const offscreenElement = document.createElement("canvas");
 offscreenElement.width = width;
 offscreenElement.height = height;
 const offscreenCtx = offscreenElement.getContext("2d");
@@ -18,7 +16,8 @@ const offscreenCtx = offscreenElement.getContext("2d");
 /**
  * Setup and draw the gradient.
  */
-const g = new SweepGradient(offscreenCtx);
+const g = new SweepGradient.SweepGradient(offscreenCtx);
+
 g.addColorStop(0.0, "#ffff00");
 g.addColorStop(0.25, "#ff00ff");
 g.addColorStop(0.5, "red");
@@ -30,7 +29,10 @@ g.draw();
 /**
  * Get the gradient as a pattern.
  */
-const gradientPattern = offscreenCtx.createPattern(offscreenCtx.canvas, "no-repeat");
+const gradientPattern = offscreenCtx.createPattern(
+  offscreenCtx.canvas,
+  "no-repeat"
+);
 
 /**
  * Set up the canvas on the page to place our gradient

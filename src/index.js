@@ -1,3 +1,5 @@
+import tinycolor from "tinycolor2";
+
 export class SweepGradient {
   constructor(ctx) {
     this.ctx = ctx;
@@ -48,7 +50,9 @@ export class SweepGradient {
 
     const blend = propEnd / propRange;
 
-    return tinycolor.mix(regionStart.color, regionEnd.color, blend * 100).toRgbString();
+    return tinycolor
+      .mix(regionStart.color, regionEnd.color, blend * 100)
+      .toRgbString();
   }
 
   draw() {

@@ -2,19 +2,34 @@
   "name": "canvas-sweep-gradient",
   "version": "0.1.0",
   "description": "A radial gradient that sweeps around a circle.",
-  "main": "lib/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
   "author": "Tim Brayshaw <tim@brayshaw.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "babel src -d lib",
-    "format": "prettier --write \"demo/**/*.js\" \"src/**/*.js\""
+  "homepage": "https://github.com/twisty/canvas-sweep-gradient#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twisty/canvas-sweep-gradient.git"
   },
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build",
+    "format": "prettier --write \"rollup.config.js\" \"demo/**/*.js\" \"src/**/*.js\""
+  },
+  "files": [
+    "/dist"
+  ],
   "dependencies": {
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "prettier": "^1.14.2"
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "prettier": "^1.14.2",
+    "rollup": "^0.66.2",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-node-resolve": "^3.4.0"
   }
 }
