@@ -1,6 +1,6 @@
 {
   "name": "canvas-sweep-gradient",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A radial gradient that sweeps around a circle.",
   "main": "lib/index.js",
   "author": "Tim Brayshaw <tim@brayshaw.com>",
