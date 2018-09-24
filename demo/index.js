@@ -13,6 +13,8 @@ offscreenElement.width = width;
 offscreenElement.height = height;
 const offscreenCtx = offscreenElement.getContext("2d");
 
+const start = new Date();
+
 /**
  * Setup and draw the gradient.
  */
@@ -29,6 +31,10 @@ g.addColorStop(0.75, "rgba(255,255,0,0)");
 g.addColorStop(1.0, "#ffff00");
 
 g.draw();
+
+var end = new Date();
+var elapsed = end.getTime() - start.getTime();
+console.log(`${elapsed} milliseconds`);
 
 /**
  * Get the gradient as a pattern.
