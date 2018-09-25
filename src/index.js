@@ -60,11 +60,6 @@ export class SweepGradient {
   }
 
   draw() {
-    this.drawPerPixel();
-    //this.drawUsingArc();
-  }
-
-  drawPerPixel() {
     const ctx = this.ctx;
     const width = this.x1 - this.x0;
     const height = this.y1 - this.y0;
@@ -91,32 +86,6 @@ export class SweepGradient {
         ctx.fillStyle = this.colourForProportion(stops, angle / 360);
         ctx.fillRect(x, y, rectSize, rectSize);
       }
-    }
-  }
-
-  drawUsingArc() {
-    const degToRad = degree => {
-      return (Math.PI / 180) * (degree - 90);
-    };
-
-    const ctx = this.ctx;
-    const width = this.x1 - this.x0;
-    const height = this.y1 - this.y0;
-    const x = this.x0 + width / 2;
-    const y = this.y0 + height / 2;
-    const radius = Math.min(x, y);
-    const circumference = 2 * Math.PI * radius;
-    const degStep = Math.max(1, 360 / circumference);
-    const stops = this.getStops();
-
-    for (let i = 0; i < 360; i += degStep) {
-      let proportion = i / 360;
-      let color = this.colourForProportion(stops, proportion);
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.arc(x, y, radius, degToRad(i), degToRad(i + degStep));
-      ctx.fill();
     }
   }
 }
