@@ -20,9 +20,7 @@
   "files": [
     "/dist"
   ],
-  "dependencies": {
-    "tinycolor2": "^1.4.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
